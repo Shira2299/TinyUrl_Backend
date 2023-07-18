@@ -74,27 +74,25 @@ const userContex = {
     // }  
     deleteLinkById: async(userId,linkId)=>{
         console.log("linkId",linkId);
-       let user = await userModel.findOne({_id:userId});
-       console.log ("the user in delete link ",user);    
-       let filter_link= user.links.filter((val)=>{
-         console.log("val= ",val,"val._id= ",val._id);
-         if(val._id!=linkId)
+        let user = await userModel.findOne({_id:userId});
+        console.log ("the user in delete link ",user);    
+        let filter_link= user.links.filter((val)=>{
+        console.log("val= ",val,"val._id= ",val._id);
+        if(val._id!=linkId)
            return val;
-       })    
-    //    console.log("filter link",filter_link);
-       await userModel.findByIdAndUpdate(userId,{links:filter_link});
-       user = await userModel.findOne({_id:userId});
-       console.log("user ",user);  
-       if(user.links.length==0)
+         })    
+        await userModel.findByIdAndUpdate(userId,{links:filter_link});
+        user = await userModel.findOne({_id:userId});
+        console.log("user ",user);  
+        if(user.links.length==0)
             return null;       
          let Links=[];
-           for (let i = 0; i < user.links.length; i++) {
+         for (let i = 0; i < user.links.length; i++) {
             // console.log('user.links[index]',user.links[index]);
-              const link= await linkContex.getLinkById(user.links[i]._id)
-              Links.push({id:link.id,link:link.orginalUrl});
-           }
-          return Links;
-     
+            const link= await linkContex.getLinkById(user.links[i]._id)
+            Links.push({id:link.id,link:link.orginalUrl});
+         }
+        return Links;   
      }
 };
 

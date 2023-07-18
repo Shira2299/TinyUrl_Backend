@@ -1,7 +1,5 @@
 import linkContex from '../Contex/LinkContex.js';
 import userContex from '../Contex/UserContex.js';
-// import LinkModel from '../Model/LinkModel.js';
-//import { containsOperation } from 'sift/lib/core';
 
 const LinkController = {
     
@@ -16,14 +14,14 @@ const LinkController = {
     },
     add: async (req,res) => {
         const userId = req.id;
-        console.log('enter linkcontroller',req.body);
+        // console.log('enter linkcontroller',req.body);
         const {orginalUrl,newUrl} = req.body;
-        console.log('add link', orginalUrl)
+        // console.log('add link', orginalUrl)
         const newLink = await linkContex.addLink(orginalUrl,newUrl);
-        console.log('newLink',newLink);
-        console.log('newLink._id',newLink._id);
+        // console.log('newLink',newLink);
+        // console.log('newLink._id',newLink._id);
         const user = await userContex.addUserLink(userId,newLink._id)    
-        console.log('user',user);  
+        // console.log('user',user);  
         res.send(newLink);
     },
     updateTargetKey: async (req,res) => {
@@ -39,7 +37,7 @@ const LinkController = {
         url.targetParamKey = target;
         url.save();
         res.send(url);
-    },
+    },    
     updateTargetValues: async (req,res) => {
        const {name,value} = req.body;      
        const {newUrl} =req.body;
@@ -54,23 +52,14 @@ const LinkController = {
     //     const deleted = await linkContex.removeLink(req.params.id);
     //     res.send(deleted);
     // },  
-    // delete: async(req,res)=>{
-    //     const userid=req.id;
-    //     console.log('userid',userid);
-    //     const userLinks= await userContex.deleteLinkById(userid,req.params.id);
-    //     console.log("delete link controler",req.params.id);
-    //     const {id} = req.params.id
-    //     const deleted=await linkContex.deleteLink(id);
-    //     res.send(userLinks);
-    //   },
-     delete: async(req,res)=>{
+    delete: async(req,res)=>{
         const userid=req.id;
         const user= await userContex.deleteLinkById(userid,req.params.id);
-        console.log("delete link controler",req.params.id);
+        // console.log("delete link controler",req.params.id);
         const {id}=req.params;
         const deleted=await linkContex.deleteLink(id);
         res.send(user);
-      },
+    },
     redirect: async (req,res) => {//אמור לקבל את המקוצר
         console.log('enter to redirect');
         const {newUrl} = req.params;      
