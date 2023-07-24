@@ -29,7 +29,7 @@ const AuthController={
         if(user&&user!=-1)
          { 
             const token=jwt.sign({name:user.name, id:user._id},secret)
-            res.send({accessToken:token});
+            res.send({accessToken:token,name:user.name});
          }
         else if(!user){
             res.status(401).send("The email is wrong");}

@@ -47,31 +47,12 @@ const userContex = {
     },
     addUserLink: async(userId,linkId)=>{
        console.log("link id ",linkId)
-       let user= await userModel.findOne({_id:userId}); 
+       const user= await userModel.findOne({_id:userId}); 
        user.links.push(linkId);
        user.save();
        return user;
       },
-    // deleteLinkById: async(userId,linkId) => {
-    //     let user = await userModel.findOne({_id:userId});
-    //     console.log('user',user);
-    //     let update_links = user.links.filter((val) => {
-    //     console.log("val= ",val,"val._id= ",val._id);
-    //     if(val._id!=linkId)
-    //        return val;  
-    //     })
-    //     await userModel.findByIdAndUpdate(userId,{links:update_links});
-    //     user = await userModel.findOne({_id:userId});
-    //     if(user.links.length==0)
-    //         return null;
-    //     let Links = [];    
-    //     for(let i = 0; i < user.links.length; i++)
-    //     {
-    //         const link = await linkContex.getLinkById(user.links[i])
-    //         Links.push({id:link.id,link:link.orginalUrl})
-    //     }
-    //     return Links;
-    // }  
+    
     deleteLinkById: async(userId,linkId)=>{
         console.log("linkId",linkId);
         let user = await userModel.findOne({_id:userId});

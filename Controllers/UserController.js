@@ -30,7 +30,6 @@ const UserController = {
     },
     getLinksByUserId: async (req,res) => {
         const user = await userContex.getUserByEmail(req.params.email);
-        // console.log('user',user);
         // console.log("user.links",user.links);
          let arrLinks = [];  
         // let arrnewUrl = [];
@@ -40,10 +39,11 @@ const UserController = {
             // console.log('user.links[i].id',user.links[i].id);
             // console.log('user.links[i]',user.links[i]._id.toString());
             const link = await linkContex.getLinkById(user.links[i]._id.toString())
-            // console.log("link",link);
+             console.log("link",link);
             // arrLinks.push({link:link.orginalUrl})
             if(link!=null)
-              arrLinks.push({id:link.id,link:link.orginalUrl})
+                arrLinks.push({id:link.id,link:link.orginalUrl,newUrl:link.newUrl,clicks:link.ipAdress})
+            //   arrLinks.push({id:link.id,link:link.orginalUrl})
          }
          if(arrLinks.length === 0){
             res.send([]);
@@ -53,7 +53,7 @@ const UserController = {
         //  user.links.map(arrLinks.push(linkContex.getLinkById(user.links.id)));
        //  res.send(arrLinks);//מחזיר את האובייקט
         // res.send(arrnewUrl);
-    }
+    },
   
 }
 

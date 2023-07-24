@@ -20,12 +20,12 @@ db()
 app.use('/auth',authRouter);
 
 app.use('/users',(req,res,next)=>{
- console.log("header",req.headers.authorization);
+ console.log("header users",req.headers.authorization);
  const token= req.headers.authorization.slice(7);
  console.log("token",token);
  try{
   const decoded= jwt.verify(token,secret);
-  req.id=decoded.id;//מה לגבי פונקציות שלוקחות ID האם לשנות את כולם לקבל שם
+  req.id=decoded.id;
   next(); 
  }
  catch{
@@ -35,18 +35,17 @@ app.use('/users',(req,res,next)=>{
 
 app.use('/links',(req,res,next)=>{
   console.log("header links",req.headers.authorization);
- const token= req.headers.authorization.slice(7);
- console.log("token",token);
- try{
-  const decoded= jwt.verify(token,secret);
-  req.id=decoded.id;//מה לגבי פונקציות שלוקחות ID האם לשנות את כולם לקבל שם
-  console.log('successed',req.id);
-  next(); 
- }
- catch{
-  res.status(401).send({message:"unauthorized"});
- }
-});
+  const token= req.headers.authorization.slice(7);
+  console.log("token",token);
+  try{
+   const decoded= jwt.verify(token,secret);
+   req.id=decoded.id;
+   next(); 
+  }
+  catch{
+   res.status(401).send({message:"unauthorized"});
+  }
+ });
 
 app.use('/links',linkRouter);
 app.use('/users',userRouter);
