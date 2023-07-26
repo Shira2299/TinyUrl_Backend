@@ -21,11 +21,15 @@ const linkContex = {
         return newLink;
     },
     getUrlById: async (id) =>{
-        const url = await linkModel.findOne({id:id});
+        //  id = '64bd6df8074ade15074813f8'; 
+        const url = await linkModel.findById(id.id);
+        console.log('url=====================url',url);
         return url;
     },  
     getUrlBynewUrl: async (newUrl) => {
+        console.log('newUrl',newUrl);
         const url = await linkModel.findOne({"newUrl":newUrl});
+        console.log('url=====',url);
         return url;
     },
     removeLink: async (id) => {
@@ -33,7 +37,7 @@ const linkContex = {
     },
     redirectLink: async(newUrl) => {
        const url = await linkModel.findOne({"newUrl":newUrl});
-       console.log('url redirectLink',url);
+    //    console.log('url redirectLink',url);
        return url;
    },
     deleteLink: async(id)=>{

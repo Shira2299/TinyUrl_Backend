@@ -30,23 +30,42 @@ const LinkController = {
         // const {target} = req.query;
         // const updatelink = await linkContex.updateLink(id_d,{id,orginalUrl});
         // res.send(updatelink);
-        console.log('req.body', req.body)
         const target = req.body.targetParamKey;
-       // const id = req.params;
+        const id = req.params;
         const url = await linkContex.getUrlById(id);
-        url.targetParamKey = target;
+        console.log('terget',target);
+        console.log("url.targetParamKey",url.targetParamKey);
+        if(url.targetParamKey===undefined)
+        {
+            console.log('enter if target========',target);
+            url.targetParamKey = target;
+        }
         url.save();
+        console.log('url',url);
+        console.log('url.targetParamKey',url.targetParamKey);
         res.send(url);
+        // const target = req.body.targetParamKey;
+        // const id = req.params;
+        //  const url = await linkContex.getUrlById(id);
+        //  url.targetParamKey = target;
+        //  url.save();
+        //  res.send(url);
     },    
     updateTargetValues: async (req,res) => {
-       const {name,value} = req.body;      
-       const {newUrl} =req.body;
+       const {nameT,valueT} = req.body;      
+       const {newUrl,targetParamKey} =req.body;
        const url =  await linkContex.getUrlBynewUrl(newUrl);   
       // console.log('url.targetParamValue',url);
-       url.targetValues.push({name:name,value:value});
+      console.log('targetParamKey',targetParamKey);
+       console.log('url=====url',url);
+       url.targetValues.push({name:nameT,value:valueT});///there is a problem in the first time??
        url.save();
+       console.log('url.targetParamKey',url.targetParamKey);
+       console.log('targetParamKey===========',targetParamKey);
+       console.log('url.targetParamValue===========',url.targetValues);
+       console.log('url.newUrl',url.newUrl);
       // res.send(url);
-      res.send("http://localhost:3000/"+url.newUrl+"?"+url.targetParamKey+"="+value);
+      res.send("http://localhost:3000/"+url.newUrl+"?"+targetParamKey+"="+valueT);
     },
     // delete: async (req,res) => {
     //     const deleted = await linkContex.removeLink(req.params.id);
@@ -64,11 +83,14 @@ const LinkController = {
         console.log('enter to redirect');
         const {newUrl} = req.params;      
         const url = await linkContex.redirectLink(newUrl);
+        console.log('redirect url.clicks',url.clicks);
         const clicks = url.clicks || [];
         // const {clicks} = url;//אפשר גם כך במקום השורה בנ"ל     
         const t = req.query[url.targetParamKey] || null;
         // console.log("========t==========",t);//Elkayam
         // console.log('==========object===',req.query)//{Sem: 'Elkayam'}    
+        // clicks.push({insertedAt: Date.now(),ipAdress: req.socket.localAddress,targetParamValue: t});
+        // url.save();
         clicks.push({insertedAt: Date.now(),ipAdress: req.socket.localAddress,targetParamValue: t});
         url.save();
         res.redirect(url.orginalUrl);

@@ -1,3 +1,4 @@
+import { query } from "express";
 import nodemailer from "nodemailer";
 
 // async..await is not allowed in global scope, must use a wrapper
@@ -5,7 +6,8 @@ const password = "kdpwyemiszabglag";
 const fromEmail = "shiramail2299@gmail.com";
 const MailSender = {
     sendEmail:async(req,res)=>{
-        console.log('send email')
+    console.log('send email')
+      
         let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 587,
@@ -17,7 +19,22 @@ const MailSender = {
             },
         });
         const mail = req.params.mail;
-        const tinyUrl = 'http://localhost:3000/'+req.params.tinyUrl; 
+        let tinyUrl = null;
+        if (Object.keys(req.query).length === 0 && req.query.constructor === Object) {
+            console.log('req.query is empty');
+            tinyUrl = 'http://localhost:3000/'+req.params.tinyUrl; 
+          } else {
+            console.log('req.query is not empty');
+              const firstKey = Object.keys(req.query)[0];
+              let val;
+              console.log('firstKey',firstKey);
+              const sum = req.query[firstKey];
+              const [value1, value2] = sum.split(',');
+              val = value1;
+              console.log('Value 1:', value1);
+              tinyUrl = 'http://localhost:3000/' + req.params.tinyUrl + '?' + firstKey + '=' + value1;
+          }
+           
 const htmlBody = `
     <html>
     <head>
