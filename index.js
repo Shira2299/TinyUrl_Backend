@@ -11,7 +11,7 @@ import MailSender from './mail.js';
 
 const app = express()
 // const port = 3000
-const port = "https://tinyb.onrender.com";
+const port = tinyb.onrender.com;
 const secret = "shira=100000$&&sweet";
 
 app.use(cors())
