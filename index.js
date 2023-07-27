@@ -56,4 +56,5 @@ app.get('/mail/:mail/:tinyUrl', await MailSender.sendEmail);
 // app.listen(port, () => {
 //     console.log(`server run on port http://localhost:${port}`)
 // })
-app.listen(PORT, () => console.log("server run on port " + PORT));
+// app.listen(PORT, () => console.log("server run on port " + PORT));
+app.listen(port, () => console.log("server run on port " + port));
