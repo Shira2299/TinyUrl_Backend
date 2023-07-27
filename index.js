@@ -11,7 +11,8 @@ import MailSender from './mail.js';
 
 const app = express()
 // const port = 3000
-const port = tinyb.onrender.com;
+const PORT = process.env.PORT || 3000; // Use PORT environment variable or default to 3000
+// const PORT = tinyb.onrender.com;
 const secret = "shira=100000$&&sweet";
 
 app.use(cors())
@@ -57,4 +58,7 @@ app.get('/mail/:mail/:tinyUrl', await MailSender.sendEmail);
 //     console.log(`server run on port http://localhost:${port}`)
 // })
 // app.listen(PORT, () => console.log("server run on port " + PORT));
-app.listen(port, () => console.log("server run on port " + port));
+// app.listen(port, () => console.log("server run on port " + port));
+app.listen(PORT, () => {
+  console.log(`server run on port ${PORT}`);
+});
