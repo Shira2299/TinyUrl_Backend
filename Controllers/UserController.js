@@ -13,7 +13,7 @@ const UserController = {
     },
     add: async (req,res) => {
        // const {user} = req.body;
-        console.log('enter usercontroller add',req.body);
+        // console.log('enter usercontroller add',req.body);
         const {name,email,password} = req.body;
         const newUser = await userContex.addUser(name,email,password);        
         res.send(newUser);
@@ -30,16 +30,15 @@ const UserController = {
     },
     getLinksByUserId: async (req,res) => {
         const user = await userContex.getUserByEmail(req.params.email);
-        // console.log("user.links",user.links);
          let arrLinks = [];  
         // let arrnewUrl = [];
-        console.log('user.links.length',user.links.length);
+        // console.log('user.links.length',user.links.length);
          for(let i = 0; i < user.links.length; i++)
          {
             // console.log('user.links[i].id',user.links[i].id);
             // console.log('user.links[i]',user.links[i]._id.toString());
             const link = await linkContex.getLinkById(user.links[i]._id.toString())
-             console.log("link",link);
+            //  console.log("link",link);
             // arrLinks.push({link:link.orginalUrl})
             if(link!=null)
                 arrLinks.push({id:link.id,link:link.orginalUrl,newUrl:link.newUrl,clicks:link.ipAdress})

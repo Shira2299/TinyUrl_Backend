@@ -6,9 +6,9 @@ const linkContex = {
     },
     getLinkById: async (id) => {
         try {
-          console.log('id', id);
+        //   console.log('id', id);
           let link = await linkModel.findById(id);
-          console.log('link', link);
+        //   console.log('link', link);
           return link;
         } catch (error) {
           console.error('Error in getLinkById:', error);
@@ -27,7 +27,7 @@ const linkContex = {
     },  
     getUrlBynewUrl: async (newUrl) => {
         const url = await linkModel.findOne({"newUrl":newUrl});
-        console.log('url=====',url);
+        // console.log('url=====',url);
         return url;
     },
     removeLink: async (id) => {

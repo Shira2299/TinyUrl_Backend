@@ -47,6 +47,7 @@ const LinkController = {
     updateTargetValues: async (req,res) => {
        const {nameT,valueT} = req.body;      
        const {newUrl,targetParamKey} =req.body;
+       console.log('updateTargetValues=======targetParamKey',targetParamKey);
        const url =  await linkContex.getUrlBynewUrl(newUrl);   
        console.log('url=====url',url);
        url.targetValues.push({name:nameT,value:valueT});///there is a problem in the first time??
@@ -71,10 +72,10 @@ const LinkController = {
         res.send(user);
     },
     redirect: async (req,res) => {//אמור לקבל את המקוצר
-        console.log('enter to redirect');
+        // console.log('enter to redirect');
         const {newUrl} = req.params;      
         const url = await linkContex.redirectLink(newUrl);
-        console.log('redirect url.clicks',url.clicks);
+        // console.log('redirect url.clicks',url.clicks);
         const clicks = url.clicks || [];
         // const {clicks} = url;//אפשר גם כך במקום השורה בנ"ל     
         const t = req.query[url.targetParamKey] || null;

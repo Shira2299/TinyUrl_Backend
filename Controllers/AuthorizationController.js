@@ -6,15 +6,15 @@ const secret = "shira=100000$&&sweet";
 const AuthController={
 
     signUp: async(req,res)=>{
-        console.log('enter to signUp',req.body);
+        // console.log('enter to signUp',req.body);
         const {name,email,password}=req.body;
         const usrEmail= await context.getUserByEmail(email);
         if(!usrEmail&&email&&name&&password)
         { 
-            console.log('enter if signup');
+            // console.log('enter if signup');
             const newUser = await context.addUser(name,email,password);
             const token = jwt.sign({name:newUser.name, id:newUser._id},secret);
-            console.log("token",token);
+            // console.log("token",token);
             res.send({accessToken:token});
         }
         else
@@ -22,10 +22,10 @@ const AuthController={
     },
 
     signIn: async(req,res)=>{
-        console.log("password controller ",req.params.password)
+        // console.log("password controller ",req.params.password)
         const user=await context.signIn(req.params.email,req.params.password);
-        console.log("get user in controller ",user) 
-        console.log("get user by id");
+        // console.log("get user in controller ",user) 
+        // console.log("get user by id");
         if(user&&user!=-1)
          { 
             const token=jwt.sign({name:user.name, id:user._id},secret)

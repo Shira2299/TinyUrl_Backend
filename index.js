@@ -22,9 +22,9 @@ db()
 app.use('/auth',authRouter);
 
 app.use('/users',(req,res,next)=>{
- console.log("header users",req.headers.authorization);
+//  console.log("header users",req.headers.authorization);
  const token= req.headers.authorization.slice(7);
- console.log("token",token);
+//  console.log("token",token);
  try{
   const decoded= jwt.verify(token,secret);
   req.id=decoded.id;
@@ -36,9 +36,9 @@ app.use('/users',(req,res,next)=>{
 });
 
 app.use('/links',(req,res,next)=>{
-  console.log("header links",req.headers.authorization);
+  // console.log("header links",req.headers.authorization);
   const token= req.headers.authorization.slice(7);
-  console.log("token",token);
+  // console.log("token",token);
   try{
    const decoded= jwt.verify(token,secret);
    req.id=decoded.id;

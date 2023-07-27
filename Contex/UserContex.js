@@ -54,15 +54,15 @@ const userContex = {
     deleteLinkById: async(userId,linkId)=>{
         // console.log("linkId",linkId);
         let user = await userModel.findOne({_id:userId});
-        console.log ("the user in delete link ",user);    
+        // console.log ("the user in delete link ",user);    
         let filter_link= user.links.filter((val)=>{
-        console.log("val= ",val,"val._id= ",val._id);
+        // console.log("val= ",val,"val._id= ",val._id);
         if(val._id!=linkId)
            return val;
          })    
         await userModel.findByIdAndUpdate(userId,{links:filter_link});
         user = await userModel.findOne({_id:userId});
-        console.log("user ",user);  
+        // console.log("user ",user);  
         if(user.links.length==0)
             return null;       
          let Links=[];
