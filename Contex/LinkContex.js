@@ -23,11 +23,9 @@ const linkContex = {
     getUrlById: async (id) =>{
         //  id = '64bd6df8074ade15074813f8'; 
         const url = await linkModel.findById(id.id);
-        console.log('url=====================url',url);
         return url;
     },  
     getUrlBynewUrl: async (newUrl) => {
-        console.log('newUrl',newUrl);
         const url = await linkModel.findOne({"newUrl":newUrl});
         console.log('url=====',url);
         return url;
@@ -37,7 +35,6 @@ const linkContex = {
     },
     redirectLink: async(newUrl) => {
        const url = await linkModel.findOne({"newUrl":newUrl});
-    //    console.log('url redirectLink',url);
        return url;
    },
     deleteLink: async(id)=>{

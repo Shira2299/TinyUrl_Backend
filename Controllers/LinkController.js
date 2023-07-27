@@ -4,7 +4,6 @@ import userContex from '../Contex/UserContex.js';
 const LinkController = {
     
     getList: async (req,res) => {
-        console.log('enter getlist links controller');
         let link = await linkContex.getAllLinks();
         res.send(link);
     },
@@ -44,19 +43,11 @@ const LinkController = {
         console.log('url',url);
         console.log('url.targetParamKey',url.targetParamKey);
         res.send(url);
-        // const target = req.body.targetParamKey;
-        // const id = req.params;
-        //  const url = await linkContex.getUrlById(id);
-        //  url.targetParamKey = target;
-        //  url.save();
-        //  res.send(url);
     },    
     updateTargetValues: async (req,res) => {
        const {nameT,valueT} = req.body;      
        const {newUrl,targetParamKey} =req.body;
        const url =  await linkContex.getUrlBynewUrl(newUrl);   
-      // console.log('url.targetParamValue',url);
-      console.log('targetParamKey',targetParamKey);
        console.log('url=====url',url);
        url.targetValues.push({name:nameT,value:valueT});///there is a problem in the first time??
        url.save();

@@ -3,9 +3,7 @@ import linkContex from '../Contex/LinkContex.js';
 
 const userContex = {
     getAllUsers: async ()=> {
-        console.log('enter contex');
         let users = await userModel.find();
-        console.log('out contex',users);
         return users;
     },
     getUserById: async (id) => {
@@ -13,10 +11,10 @@ const userContex = {
         return user;
     },
     addUser: async (name,email,password) => {        
-        console.log('enter add userContex',name,email,password);
+        // console.log('enter add userContex',name,email,password);
         const newUser = new userModel({name,email,password});
         newUser.save(); 
-        console.log('out add userContex: ',newUser);      
+        // console.log('out add userContex: ',newUser);      
         return newUser;
     },
     getUserByEmail: async(email) => {
@@ -25,8 +23,8 @@ const userContex = {
      },
      signIn: async(email,password)=>{
         let user= await userModel.findOne({email});
-        console.log("password context ",password)
-        console.log("get user in context ",user) 
+        // console.log("password context ",password)
+        // console.log("get user in context ",user) 
         if(user&&password==user.password)
            return user;
         else if (!user){ return null;}
@@ -46,7 +44,7 @@ const userContex = {
         return user;
     },
     addUserLink: async(userId,linkId)=>{
-       console.log("link id ",linkId)
+    //    console.log("link id ",linkId)
        const user= await userModel.findOne({_id:userId}); 
        user.links.push(linkId);
        user.save();
@@ -54,7 +52,7 @@ const userContex = {
       },
     
     deleteLinkById: async(userId,linkId)=>{
-        console.log("linkId",linkId);
+        // console.log("linkId",linkId);
         let user = await userModel.findOne({_id:userId});
         console.log ("the user in delete link ",user);    
         let filter_link= user.links.filter((val)=>{

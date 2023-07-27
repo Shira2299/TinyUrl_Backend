@@ -26,11 +26,11 @@ const MailSender = {
           } else {
             console.log('req.query is not empty');
               const firstKey = Object.keys(req.query)[0];
-              let val;
+            //   let val;
               console.log('firstKey',firstKey);
               const sum = req.query[firstKey];
               const [value1, value2] = sum.split(',');
-              val = value1;
+            //   val = value1;
               console.log('Value 1:', value1);
               tinyUrl = 'http://localhost:3000/' + req.params.tinyUrl + '?' + firstKey + '=' + value1;
           }
