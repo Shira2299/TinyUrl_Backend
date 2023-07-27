@@ -22,7 +22,7 @@ const MailSender = {
         let tinyUrl = null;
         if (Object.keys(req.query).length === 0 && req.query.constructor === Object) {
             console.log('req.query is empty');
-            tinyUrl = 'http://localhost:3000/'+req.params.tinyUrl; 
+            tinyUrl = 'https://tinyb.onrender.com/'+req.params.tinyUrl; 
           } else {
             console.log('req.query is not empty');
               const firstKey = Object.keys(req.query)[0];
@@ -32,7 +32,7 @@ const MailSender = {
               const [value1, value2] = sum.split(',');
             //   val = value1;
               console.log('Value 1:', value1);
-              tinyUrl = 'http://localhost:3000/' + req.params.tinyUrl + '?' + firstKey + '=' + value1;
+              tinyUrl = 'https://tinyb.onrender.com/' + req.params.tinyUrl + '?' + firstKey + '=' + value1;
           }
            
 const htmlBody = `

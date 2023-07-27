@@ -56,7 +56,7 @@ const LinkController = {
        console.log('url.targetParamValue===========',url.targetValues);
        console.log('url.newUrl',url.newUrl);
       // res.send(url);
-      res.send("http://localhost:3000/"+url.newUrl+"?"+targetParamKey+"="+valueT);
+      res.send("https://tinyb.onrender.com/"+url.newUrl+"?"+targetParamKey+"="+valueT);
     },
     // delete: async (req,res) => {
     //     const deleted = await linkContex.removeLink(req.params.id);

@@ -10,7 +10,8 @@ import authRouter from './Routers/AuthRouter.js';
 import MailSender from './mail.js';
 
 const app = express()
-const port = 3000
+// const port = 3000
+const port = "https://tinyb.onrender.com";
 const secret = "shira=100000$&&sweet";
 
 app.use(cors())
@@ -52,7 +53,7 @@ app.use('/users',userRouter);
 app.get('/:newUrl',linkController.redirect);//:
 app.get('/mail/:mail/:tinyUrl', await MailSender.sendEmail);
 
-app.listen(port, () => {
-    console.log(`server run on port http://localhost:${port}`)
-})
-// app.listen(PORT, () => console.log("server run on port " + PORT));
+// app.listen(port, () => {
+//     console.log(`server run on port http://localhost:${port}`)
+// })
+app.listen(PORT, () => console.log("server run on port " + PORT));
