@@ -61,7 +61,7 @@ const LinkController = {
        console.log('t',t);
       // res.send(url);
     //   res.send("https://tinyb.onrender.com/"+url.newUrl+"?"+targetParamKey+"="+valueT);
-       const responseValue = "https://tinyb.onrender.com/" + url.newUrl + "?" + targetParamKey + "=" + valueT;
+       const responseValue =  url.newUrl + "?" + targetParamKey + "=" + valueT;
          console.log('responseValue=',responseValue);
        res.send(responseValue);
     },
